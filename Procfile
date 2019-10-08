@@ -1,0 +1,1 @@
+web: python ../deps/0/python/bin/jupyter notebook --no-browser --port=8080 --ip=0.0.0.0 --NotebookApp.token=''  --NotebookApp.password='' --NotebookApp.base_url=/jupyter --NotebookApp.allow_origin='*' --notebook-dir=/app/notebooks

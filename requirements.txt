@@ -1,0 +1,17 @@
+# Bring dependencies local with pip
+#Flask
+#cfenv
+#sap_py_jwt
+#sap_xssec
+#hdbcli
+#pydevd
+#
+cfenv
+sap-xssec
+hdbcli
+#git+https://github.com/alundesap/hana_ml#egg=hana_ml
+#In a Jupyter Terminal...
+#wget -c http://thedrop.sap-a-team.com/files/hana_ml-1.0.7.tar.gz
+#pip3 uninstall hana_ml -y
+#pip3 install hana_ml --find-links ./hana_ml-1.0.7.tar.gz
+jupyter

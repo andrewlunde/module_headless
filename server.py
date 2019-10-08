@@ -35,7 +35,7 @@ env = AppEnv()
 #   with pip using XS_PYTHON unzipped to /tmp
 # mkdir -p local
 # pip install -t local -r requirements.txt -f /tmp
-port = int(os.getenv("PORT", 9099))
+port = int(os.getenv("PORT", 8080))
 hana = env.get_service(label='hana')
 
 def attach(port, host):

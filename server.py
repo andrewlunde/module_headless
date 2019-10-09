@@ -138,9 +138,9 @@ def headless_chrome():
     output += '\n'
     return Response(output, mimetype='text/html' , status=200,)
 
-@app.route('/headless/pages')
+@app.route('/headless/pages/<int:pagenum>')
 def headless_pages():
-    return send_from_directory('/root/app/pages/' + 'page01.png', mimetype='image/vnd.microsoft.icon')
+    return send_from_directory('/root/app/pages/page' + pagenum + '.png', mimetype='image/vnd.microsoft.icon')
 
 @app.route('/headless/post', methods=['POST'])
 def unauth_post():

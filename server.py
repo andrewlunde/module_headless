@@ -133,14 +133,17 @@ def headless_chrome():
         #driver.get('https://www.conciletime.com')
         time.sleep(2)
         driver.get_screenshot_as_file('/root/app/pages/' + 'page01.png')
+        
         email = driver.find_element_by_id('j_username')
         email.send_keys('andrew@lunde.com') 
         password = driver.find_element_by_id('j_password') 
-        password.send_keys('')
+        password.send_keys('Plak848!')
         login = driver.find_element_by_id('logOnFormSubmit') 
-        #login.click() 
-
         driver.get_screenshot_as_file('/root/app/pages/' + 'page02.png')
+
+        login.click()
+        time.sleep(2) 
+        driver.get_screenshot_as_file('/root/app/pages/' + 'page03.png')
 
     except:
         import traceback;traceback.print_exc() 

@@ -16,3 +16,4 @@ Flask
 cfenv
 sap-xssec
 hdbcli
+selenium

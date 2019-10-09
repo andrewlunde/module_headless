@@ -107,7 +107,16 @@ def unauth_test():
 
 @app.route('/headless/chrome')
 def headless_chrome():
-    output = '\n Headless Chrome... \n'
+    output = "<!DOCTYPE HTML>\n"
+    output += "<html>\n"
+    output += "<head>\n"
+    output += "<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />\n"
+    output += "<title>chrome</title>\n"
+    output += "</head>\n"
+    output += "<h4>Headless Chrome</h4><br />\n"
+    output += '<body style="font-family: Tahoma, Geneva, sans-serif">\n'
+    output += '    <a href="/headless/pages/" target="chrome">Captured Pages</a><br />\n'
+
     try:
         from selenium import webdriver
         options = webdriver.ChromeOptions()
@@ -117,14 +126,20 @@ def headless_chrome():
         options.add_argument('no-sandbox')
         options.add_argument('disable-dev-shm-usage')
         driver = webdriver.Chrome(chrome_options=options)
-        driver.get('https://account.us1.hana.ondemand.com/cockpit/#/globalaccount/aTeam/subaccounts')
-        driver.get_screenshot_as_file('/tmp/page01.png')
+        #driver.get('https://account.us1.hana.ondemand.com/cockpit/#/globalaccount/aTeam/subaccounts')
+        #driver.get_screenshot_as_file(os.path.join(app.root_path, '/pages/') + 'page01.png')
 
     except:
         import traceback;traceback.print_exc() 
 
+    output += "</body>\n"
+    output += "</html>\n"
     output += '\n'
-    return Response(output, mimetype='text/plain' , status=200,)
+    return Response(output, mimetype='text/html' , status=200,)
+
+@app.route('/headless/page')
+def headless_page():
+    return send_from_directory(os.path.join(app.root_path, '/pages/'),'page01.png', mimetype='image/vnd.microsoft.icon')
 
 @app.route('/headless/post', methods=['POST'])
 def unauth_post():

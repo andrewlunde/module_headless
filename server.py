@@ -13,6 +13,7 @@ import os
 # Downloading pyhdb-0.3.3.tar.gz
 import json
 import datetime
+import time
 #import Crypto.PublicKey.RSA as RSA
 #import jws.utils
 #import python_jwt as jwt
@@ -130,6 +131,7 @@ def headless_chrome():
         #output += '    <p>' + request.args.get('page') + '</p><br />\n'
         driver.get('https://account.us1.hana.ondemand.com/cockpit/#/globalaccount/aTeam/subaccounts')
         #driver.get('https://www.conciletime.com')
+        time.sleep(10)
         driver.get_screenshot_as_file('/root/app/pages/' + 'page01.png')
 
     except:

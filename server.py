@@ -163,6 +163,7 @@ def headless_chrome():
         #CreateNewSubAccountDialog--environmentsCombo-hiddenInput
         environmentsComboInput = driver.find_element_by_id('CreateNewSubAccountDialog--environmentsCombo-hiddenInput')
         environmentsComboInput.send_keys('Cloud Foundry')
+        time.sleep(1)
         driver.get_screenshot_as_file('/root/app/pages/' + 'page05.png')
         #CreateNewSubAccountDialog--providersCombo-hiddenInput
         providersComboInput = driver.find_element_by_id('CreateNewSubAccountDialog--providersCombo-hiddenInput')
@@ -180,6 +181,7 @@ def headless_chrome():
         betaEnabledCF.click()
         #__button11 #Create Button
         createButton = driver.find_element_by_id('__button11')
+        time.sleep(1)
         driver.get_screenshot_as_file('/root/app/pages/' + 'page06.png')
         createButton.click()
         #__popover8

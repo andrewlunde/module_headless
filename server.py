@@ -120,6 +120,7 @@ def headless_chrome():
 
     try:
         from selenium import webdriver
+        #https://w3c.github.io/webdriver/
         options = webdriver.ChromeOptions()
         options.binary_location = '/opt/google/chrome/chrome'
         options.add_argument('headless')
@@ -153,19 +154,27 @@ def headless_chrome():
         driver.get_screenshot_as_file('/root/app/pages/' + 'page04.png')
         #CreateNewSubAccountDialog--displayName-inner
         displayName = driver.find_element_by_id('CreateNewSubAccountDialog--displayName-inner')
+        #$("#CreateNewSubAccountDialog--displayName-inner").val("aokheadless")
         displayName.send_keys('aokheadless')
         #CreateNewSubAccountDialog--description-inner
         description = driver.find_element_by_id('CreateNewSubAccountDialog--description-inner')
+        #$("#CreateNewSubAccountDialog--description-inner").val("Test subaccount creation via headless browser.")
         description.send_keys('Test subaccount creation via headless browser.')
+        
+        #https://www.techbeamers.com/selenium-webdriver-coding-tips/
+        #Select dropdown = new Select(driver.findElement(By.xpath("//drop_down_x_path")));
+        #dropdown.deselectAll();
+        #dropdown.selectByVisibleText("selectLabel");
+
         #CreateNewSubAccountDialog--environmentsCombo
         #environmentsCombo = driver.find_element_by_id('CreateNewSubAccountDialog--environmentsCombo')
         #environmentsCombo.click()
-        ##CreateNewSubAccountDialog--environmentsCombo-hiddenInput
-        #environmentsComboInput = driver.find_element_by_id('CreateNewSubAccountDialog--environmentsCombo-hiddenInput')
-        #environmentsComboInput.send_keys('Cloud Foundry')
+        #CreateNewSubAccountDialog--environmentsCombo-hiddenInput
+        environmentsComboInput = driver.find_element_by_id('CreateNewSubAccountDialog--environmentsCombo-hiddenInput')
+        environmentsComboInput.send_keys('Cloud Foundry')
         time.sleep(1)
         driver.get_screenshot_as_file('/root/app/pages/' + 'page05.png')
-        ##CreateNewSubAccountDialog--providersCombo-hiddenInput
+        #CreateNewSubAccountDialog--providersCombo-hiddenInput
         #providersComboInput = driver.find_element_by_id('CreateNewSubAccountDialog--providersCombo-hiddenInput')
         ##Amazon Web Services (AWS)
         #providersComboInput.send_keys('Amazon Web Services (AWS)')
@@ -175,6 +184,7 @@ def headless_chrome():
         #regionsComboInput.send_keys('US East (VA)')
         ##CreateNewSubAccountDialog--subdomain-inner
         #subdomain = driver.find_element_by_id('CreateNewSubAccountDialog--subdomain-inner')
+        #$("#CreateNewSubAccountDialog--subdomain-inner").val("abcheadless")
         #subdomain.send_keys('abcheadless')
         ##CreateNewSubAccountDialog--betaEnabledCF-CB
         #betaEnabledCF = driver.find_element_by_id('CreateNewSubAccountDialog--betaEnabledCF-CB')
@@ -189,6 +199,7 @@ def headless_chrome():
         #time.sleep(1)
         #driver.get_screenshot_as_file('/root/app/pages/' + 'page07.png')
         ##time.sleep(1)
+        driver.quit()
 
     except:
         import traceback;traceback.print_exc() 

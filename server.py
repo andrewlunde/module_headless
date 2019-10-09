@@ -139,6 +139,10 @@ def headless_chrome():
     output += '\n'
     return Response(output, mimetype='text/html' , status=200,)
 
+@app.route('/headless/pagelist')
+def headless_page_list():
+    return send_from_directory('/root/app/pages', 'index.html', mimetype='text/html')
+
 @app.route('/headless/pages')
 def headless_pages():
     return send_from_directory('/root/app/pages', 'page' + request.args.get('page') + '.png', mimetype='image/png')

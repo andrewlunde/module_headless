@@ -105,14 +105,14 @@ def headless_links():
 def unauth_test():
     return 'Python UnAuthorized Test, Yo! <br />\nI am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0))
 
-@app.route('/headless/chrome')
-def headless_chrome():
-    output = 'Headless Chrome. \n'
-    output += '\n'
-    output += '\n'
-
-    return Response(output, mimetype='text/plain' , status=200,)
-
+#@app.route('/headless/chrome')
+#def headless_chrome():
+#    output = 'Headless Chrome. \n'
+#    output += '\n'
+#    output += '\n'
+#
+#    return Response(output, mimetype='text/plain' , status=200,)
+#
 @app.route('/headless/post', methods=['POST'])
 def unauth_post():
     output = 'Python Post to DB (Dangerous!). \n'

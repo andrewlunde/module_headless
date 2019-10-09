@@ -126,6 +126,8 @@ def headless_chrome():
         options.add_argument('no-sandbox')
         options.add_argument('disable-dev-shm-usage')
         driver = webdriver.Chrome(chrome_options=options)
+        output += '    <p>' + os.path.join(app.root_path, '/pages/') + '</p><br />\n'
+
         #driver.get('https://account.us1.hana.ondemand.com/cockpit/#/globalaccount/aTeam/subaccounts')
         #driver.get_screenshot_as_file(os.path.join(app.root_path, '/pages/') + 'page01.png')
 
@@ -137,8 +139,8 @@ def headless_chrome():
     output += '\n'
     return Response(output, mimetype='text/html' , status=200,)
 
-@app.route('/headless/page')
-def headless_page():
+@app.route('/headless/pages')
+def headless_pages():
     return send_from_directory(os.path.join(app.root_path, '/pages/'),'page01.png', mimetype='image/vnd.microsoft.icon')
 
 @app.route('/headless/post', methods=['POST'])

@@ -106,7 +106,7 @@ def unauth_test():
     return 'Python UnAuthorized Test, Yo! <br />\nI am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0))
 
 @app.route('/headless/chrome')
-def unauth_post():
+def headless_chrome():
     output = 'Headless Chrome. \n'
     output += '\n'
     output += '\n'

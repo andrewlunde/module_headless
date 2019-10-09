@@ -149,7 +149,7 @@ def headless_chrome():
         #__jsview1--addSubAccount
         addSubaccount = driver.find_element_by_id('__jsview1--addSubAccount')
         addSubaccount.click()
-        #time.sleep(1)
+        time.sleep(1)
         driver.get_screenshot_as_file('/root/app/pages/' + 'page04.png')
         #CreateNewSubAccountDialog--displayName-inner
         displayName = driver.find_element_by_id('CreateNewSubAccountDialog--displayName-inner')

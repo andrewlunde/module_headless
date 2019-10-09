@@ -110,7 +110,7 @@ def headless_chrome():
     output = '\n Headless Chrome... \n'
     try:
         from selenium import webdriver
-     except:
+    except:
         import traceback;traceback.print_exc() 
 
     output += '\n'

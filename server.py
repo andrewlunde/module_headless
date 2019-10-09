@@ -67,6 +67,7 @@ def hello_world():
     output = '<strong>Hello World! I am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0)) + '</strong> Try these links.</br>\n'
     output += '<a href="/env">/env</a><br />\n'
     output += '<a href="/headless/test">/headless/test</a><br />\n'
+    output += '<a href="/headless/chrome">/headless/chrome</a><br />\n'
     output += '<a href="/headless/db_only">/headless/db_only</a><br />\n'
     output += '<a href="/auth_python/db_valid">/auth_python/db_valid</a><br />\n'
     return output
@@ -94,6 +95,7 @@ def dump_env():
 def python_links():
     output = '<strong>Hello World! I am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0)) + '</strong> Try these links.</br>\n'
     output += '<a href="/headless/test">/headless/test</a><br />\n'
+    output += '<a href="/headless/chrome">/headless/chrome</a><br />\n'
     output += '<a href="/headless/db_only">/headless/db_only</a><br />\n'
     output += '<a href="/auth_python/db_valid">/auth_python/db_valid</a><br />\n'
     return output
@@ -102,6 +104,12 @@ def python_links():
 @app.route('/headless/test')
 def unauth_test():
     return 'Python UnAuthorized Test, Yo! <br />\nI am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0))
+
+@app.route('/headless/chrome')
+def headless_chrome():
+    output = '\n Headless Chrome... \n'
+    output += '\n'
+    return Response(output, mimetype='text/plain' , status=200,)
 
 @app.route('/headless/post', methods=['POST'])
 def unauth_post():

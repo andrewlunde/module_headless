@@ -141,7 +141,7 @@ def headless_chrome():
 
 @app.route('/headless/pages')
 def headless_pages():
-    return send_from_directory('/tmp', 'page' + request.args.get('page') + '.png', mimetype='image/png')
+    return send_from_directory('/root/app/pages', 'page' + request.args.get('page') + '.png', mimetype='image/png')
 
 @app.route('/headless/post', methods=['POST'])
 def unauth_post():

@@ -158,37 +158,37 @@ def headless_chrome():
         description = driver.find_element_by_id('CreateNewSubAccountDialog--description-inner')
         description.send_keys('Test subaccount creation via headless browser.')
         #CreateNewSubAccountDialog--environmentsCombo
-        environmentsCombo = driver.find_element_by_id('CreateNewSubAccountDialog--environmentsCombo')
-        environmentsCombo.click()
-        #CreateNewSubAccountDialog--environmentsCombo-hiddenInput
-        environmentsComboInput = driver.find_element_by_id('CreateNewSubAccountDialog--environmentsCombo-hiddenInput')
-        environmentsComboInput.send_keys('Cloud Foundry')
+        #environmentsCombo = driver.find_element_by_id('CreateNewSubAccountDialog--environmentsCombo')
+        #environmentsCombo.click()
+        ##CreateNewSubAccountDialog--environmentsCombo-hiddenInput
+        #environmentsComboInput = driver.find_element_by_id('CreateNewSubAccountDialog--environmentsCombo-hiddenInput')
+        #environmentsComboInput.send_keys('Cloud Foundry')
         time.sleep(1)
         driver.get_screenshot_as_file('/root/app/pages/' + 'page05.png')
-        #CreateNewSubAccountDialog--providersCombo-hiddenInput
-        providersComboInput = driver.find_element_by_id('CreateNewSubAccountDialog--providersCombo-hiddenInput')
-        #Amazon Web Services (AWS)
-        providersComboInput.send_keys('Amazon Web Services (AWS)')
-        #CreateNewSubAccountDialog--regionsCombo-hiddenInput
-        regionsComboInput = driver.find_element_by_id('CreateNewSubAccountDialog--regionsCombo-hiddenInput')
-        #US East (VA)
-        regionsComboInput.send_keys('US East (VA)')
-        #CreateNewSubAccountDialog--subdomain-inner
-        subdomain = driver.find_element_by_id('CreateNewSubAccountDialog--subdomain-inner')
-        subdomain.send_keys('abcheadless')
-        #CreateNewSubAccountDialog--betaEnabledCF-CB
-        betaEnabledCF = driver.find_element_by_id('CreateNewSubAccountDialog--betaEnabledCF-CB')
-        betaEnabledCF.click()
-        #__button11 #Create Button
-        createButton = driver.find_element_by_id('__button11')
-        time.sleep(1)
-        driver.get_screenshot_as_file('/root/app/pages/' + 'page06.png')
-        createButton.click()
-        #__popover8
-        doneMessage = driver.find_element_by_id('__popover8')
-        time.sleep(1)
-        driver.get_screenshot_as_file('/root/app/pages/' + 'page07.png')
+        ##CreateNewSubAccountDialog--providersCombo-hiddenInput
+        #providersComboInput = driver.find_element_by_id('CreateNewSubAccountDialog--providersCombo-hiddenInput')
+        ##Amazon Web Services (AWS)
+        #providersComboInput.send_keys('Amazon Web Services (AWS)')
+        ##CreateNewSubAccountDialog--regionsCombo-hiddenInput
+        #regionsComboInput = driver.find_element_by_id('CreateNewSubAccountDialog--regionsCombo-hiddenInput')
+        ##US East (VA)
+        #regionsComboInput.send_keys('US East (VA)')
+        ##CreateNewSubAccountDialog--subdomain-inner
+        #subdomain = driver.find_element_by_id('CreateNewSubAccountDialog--subdomain-inner')
+        #subdomain.send_keys('abcheadless')
+        ##CreateNewSubAccountDialog--betaEnabledCF-CB
+        #betaEnabledCF = driver.find_element_by_id('CreateNewSubAccountDialog--betaEnabledCF-CB')
+        #betaEnabledCF.click()
+        ##__button11 #Create Button
+        #createButton = driver.find_element_by_id('__button11')
         #time.sleep(1)
+        #driver.get_screenshot_as_file('/root/app/pages/' + 'page06.png')
+        #createButton.click()
+        ##__popover8
+        #doneMessage = driver.find_element_by_id('__popover8')
+        #time.sleep(1)
+        #driver.get_screenshot_as_file('/root/app/pages/' + 'page07.png')
+        ##time.sleep(1)
 
     except:
         import traceback;traceback.print_exc() 

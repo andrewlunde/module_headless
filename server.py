@@ -35,7 +35,7 @@ env = AppEnv()
 #   with pip using XS_PYTHON unzipped to /tmp
 # mkdir -p local
 # pip install -t local -r requirements.txt -f /tmp
-port = int(os.getenv("PORT", 8080))
+port = int(os.getenv("PORT", 9099))
 hana = env.get_service(label='hana')
 
 def attach(port, host):
@@ -66,16 +66,15 @@ def attach(port, host):
 def hello_world():
     output = '<strong>Hello World! I am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0)) + '</strong> Try these links.</br>\n'
     output += '<a href="/env">/env</a><br />\n'
-    output += '<a href="/headless/test">/headless/test</a><br />\n'
-    output += '<a href="/headless/chrome">/headless/chrome</a><br />\n'
-    output += '<a href="/headless/db_only">/headless/db_only</a><br />\n'
+    output += '<a href="/python/test">/python/test</a><br />\n'
+    output += '<a href="/python/db_only">/python/db_only</a><br />\n'
     output += '<a href="/auth_python/db_valid">/auth_python/db_valid</a><br />\n'
     return output
     
 # Satisfy browser requests for favicon.ico so that don't return 404
 @app.route('/favicon.ico')
 def favicon():
-    return send_from_directory(os.path.join(app.root_path, ''),'favicon.ico', mimetype='image/vnd.microsoft.icon')
+    return send_from_directory(os.path.join(app.root_path, 'static'),'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route('/env')
 def dump_env():
@@ -91,29 +90,20 @@ def dump_env():
     return output
 
 # Coming through the app-router
-@app.route('/headless/links')
-def headless_links():
+@app.route('/python/links')
+def python_links():
     output = '<strong>Hello World! I am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0)) + '</strong> Try these links.</br>\n'
-    output += '<a href="/headless/test">/headless/test</a><br />\n'
-    output += '<a href="/headless/chrome">/headless/chrome</a><br />\n'
-    output += '<a href="/headless/db_only">/headless/db_only</a><br />\n'
+    output += '<a href="/python/test">/python/test</a><br />\n'
+    output += '<a href="/python/db_only">/python/db_only</a><br />\n'
     output += '<a href="/auth_python/db_valid">/auth_python/db_valid</a><br />\n'
     return output
 
 # If there is a request for a python/test, return Testing message and module's instance number
-@app.route('/headless/test')
+@app.route('/python/test')
 def unauth_test():
     return 'Python UnAuthorized Test, Yo! <br />\nI am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0))
 
-#@app.route('/headless/chrome')
-#def headless_chrome():
-#    output = 'Headless Chrome. \n'
-#    output += '\n'
-#    output += '\n'
-#
-#    return Response(output, mimetype='text/plain' , status=200,)
-#
-@app.route('/headless/post', methods=['POST'])
+@app.route('/python/post', methods=['POST'])
 def unauth_post():
     output = 'Python Post to DB (Dangerous!). \n'
     output += '\n'
@@ -126,7 +116,7 @@ def unauth_post():
 
     return Response(output, mimetype='application/json' , status=201,)
 
-@app.route('/headless/set_env')
+@app.route('/python/set_env')
 def set_pyenv():
     output = '\n Set Environment variable... \n'
     if request.args.get('PATHS_FROM_ECLIPSE_TO_PYTHON'):
@@ -138,7 +128,7 @@ def set_pyenv():
     output += '\n'
     return Response(output, mimetype='text/plain' , status=200,)
 
-@app.route('/headless/env')
+@app.route('/python/env')
 def dump_pyenv():
     output = '\n Key Environment variables... \n'
     output += 'PYTHONHOME: ' + str(os.getenv("PYTHONHOME", 0)) + '\n'
@@ -158,7 +148,7 @@ def dump_pyenv():
     output += '\n'
     return output
 
-@app.route('/headless/attach')
+@app.route('/python/attach')
 def do_attach():
     output = '\n Attaching to debugger... \n'
     attach(5678,"localhost")
@@ -166,7 +156,7 @@ def do_attach():
     return output
 
 # If there is a request for a python/test2, return Testing message and then check JWT and connect to the data service and retrieve some data
-@app.route('/headless/db_only')
+@app.route('/python/db_only')
 def unauth_db_only():
     output = 'Python UnAuthorized DB Only. \n'
     #Enable to trigger debugging

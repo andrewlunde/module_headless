@@ -127,10 +127,10 @@ def headless_chrome():
         options.add_argument('disable-dev-shm-usage')
         driver = webdriver.Chrome(chrome_options=options)
         #output += '    <p>' + request.args.get('page') + '</p><br />\n'
-        driver.get('https://account.us1.hana.ondemand.com/cockpit/#/globalaccount/aTeam/subaccounts')
-        #driver.get('https://www.conciletime.com')
-        driver.implicitly_wait(10)
-        driver.get_screenshot_as_file('/root/app/pages/' + 'page03.png')
+        #driver.get('https://account.us1.hana.ondemand.com/cockpit/#/globalaccount/aTeam/subaccounts')
+        driver.get('https://www.conciletime.com')
+        driver.implicitly_wait(15)
+        driver.get_screenshot_as_file('/root/app/pages/' + 'page01.png')
 
     except:
         import traceback;traceback.print_exc() 

@@ -138,7 +138,7 @@ def headless_chrome():
     output += '\n'
     return Response(output, mimetype='text/html' , status=200,)
 
-@app.route('/headless/pages/<int:pagenum>')
+@app.route('/headless/pages/<pagenum>')
 def headless_pages():
     return send_from_directory('/root/app/pages/page' + pagenum + '.png', mimetype='image/vnd.microsoft.icon')
 

@@ -126,7 +126,7 @@ def headless_chrome():
         options.add_argument('no-sandbox')
         options.add_argument('disable-dev-shm-usage')
         driver = webdriver.Chrome(chrome_options=options)
-        driver.implicitly_wait(10)
+        driver.implicitly_wait(30)
         #output += '    <p>' + request.args.get('page') + '</p><br />\n'
         driver.get('https://account.us1.hana.ondemand.com/cockpit/#/globalaccount/aTeam/subaccounts')
         #driver.get('https://www.conciletime.com')

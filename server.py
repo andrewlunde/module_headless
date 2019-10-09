@@ -131,8 +131,16 @@ def headless_chrome():
         #output += '    <p>' + request.args.get('page') + '</p><br />\n'
         driver.get('https://account.us1.hana.ondemand.com/cockpit/#/globalaccount/aTeam/subaccounts')
         #driver.get('https://www.conciletime.com')
-        time.sleep(10)
+        time.sleep(2)
         driver.get_screenshot_as_file('/root/app/pages/' + 'page01.png')
+        email = driver.find_element_by_id('j_username')
+        email.send_keys('andrew@lunde.com') 
+        password = driver.find_element_by_id('j_password') 
+        password.send_keys('')
+        login = driver.find_element_by_id('logOnFormSubmit') 
+        #login.click() 
+
+        driver.get_screenshot_as_file('/root/app/pages/' + 'page02.png')
 
     except:
         import traceback;traceback.print_exc() 

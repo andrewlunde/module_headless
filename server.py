@@ -131,7 +131,7 @@ def headless_chrome():
         #output += '    <p>' + request.args.get('page') + '</p><br />\n'
         driver.get('https://account.us1.hana.ondemand.com/cockpit/#/globalaccount/aTeam/subaccounts')
         #driver.get('https://www.conciletime.com')
-        #time.sleep(1)
+        time.sleep(1)
 
         email = driver.find_element_by_id('j_username')
         driver.get_screenshot_as_file('/root/app/pages/' + 'page01.png')
@@ -143,7 +143,7 @@ def headless_chrome():
         driver.get_screenshot_as_file('/root/app/pages/' + 'page02.png')
 
         login.click()
-        #time.sleep(1) 
+        time.sleep(1) 
         driver.get_screenshot_as_file('/root/app/pages/' + 'page03.png')
 
         #__jsview1--addSubAccount
@@ -153,7 +153,7 @@ def headless_chrome():
         driver.get_screenshot_as_file('/root/app/pages/' + 'page04.png')
         #CreateNewSubAccountDialog--displayName-inner
         displayName = driver.find_element_by_id('CreateNewSubAccountDialog--displayName-inner')
-        displayName.send_keys('viaheadless')
+        displayName.send_keys('aokheadless')
         #CreateNewSubAccountDialog--description-inner
         description = driver.find_element_by_id('CreateNewSubAccountDialog--description-inner')
         description.send_keys('Test subaccount creation via headless browser.')
@@ -165,12 +165,28 @@ def headless_chrome():
         description.send_keys('Cloud Foundry')
         driver.get_screenshot_as_file('/root/app/pages/' + 'page05.png')
         #CreateNewSubAccountDialog--providersCombo-hiddenInput
+        providersComboInput = driver.find_element_by_id('CreateNewSubAccountDialog--providersCombo-hiddenInput')
         #Amazon Web Services (AWS)
+        providersComboInput.send_keys('Amazon Web Services (AWS)')
         #CreateNewSubAccountDialog--regionsCombo-hiddenInput
+        regionsComboInput = driver.find_element_by_id('CreateNewSubAccountDialog--regionsCombo-hiddenInput')
         #US East (VA)
+        regionsComboInput.send_keys('US East (VA)')
         #CreateNewSubAccountDialog--subdomain-inner
+        subdomain = driver.find_element_by_id('CreateNewSubAccountDialog--subdomain-inner')
+        subdomain.send_keys('abcheadless')
         #CreateNewSubAccountDialog--betaEnabledCF-CB
+        betaEnabledCF = driver.find_element_by_id('CreateNewSubAccountDialog--betaEnabledCF-CB')
+        betaEnabledCF.click()
         #__button11 #Create Button
+        createButton = driver.find_element_by_id('__button11')
+        driver.get_screenshot_as_file('/root/app/pages/' + 'page06.png')
+        createButton.click()
+        #__popover8
+        doneMessage = driver.find_element_by_id('__popover8')
+        time.sleep(1)
+        driver.get_screenshot_as_file('/root/app/pages/' + 'page07.png')
+        #time.sleep(1)
 
     except:
         import traceback;traceback.print_exc() 

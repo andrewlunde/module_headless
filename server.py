@@ -111,6 +111,13 @@ def headless_chrome():
     try:
         from selenium import webdriver
         options = webdriver.ChromeOptions()
+        options.binary_location = '/opt/google/chrome/chrome'
+        options.add_argument('headless')
+        options.add_argument('window-size=1200x600')
+        options.add_argument('no-sandbox')
+        options.add_argument('disable-dev-shm-usage')
+        #driver = webdriver.Chrome(chrome_options=options)
+
     except:
         import traceback;traceback.print_exc() 
 

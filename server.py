@@ -115,7 +115,7 @@ def headless_chrome():
     output += "</head>\n"
     output += "<h4>Headless Chrome</h4><br />\n"
     output += '<body style="font-family: Tahoma, Geneva, sans-serif">\n'
-    output += '    <a href="/headless/pages/" target="chrome">Captured Pages</a><br />\n'
+    output += '    <a href="/headless/pagelist" target="chrome">Captured Pages</a><br />\n'
 
     try:
         from selenium import webdriver
@@ -127,8 +127,9 @@ def headless_chrome():
         options.add_argument('disable-dev-shm-usage')
         driver = webdriver.Chrome(chrome_options=options)
         #output += '    <p>' + request.args.get('page') + '</p><br />\n'
-        #driver.get('https://account.us1.hana.ondemand.com/cockpit/#/globalaccount/aTeam/subaccounts')
-        driver.get('https://www.conciletime.com')
+        driver.get('https://account.us1.hana.ondemand.com/cockpit/#/globalaccount/aTeam/subaccounts')
+        #driver.get('https://www.conciletime.com')
+        driver.implicitly_wait(10)
         driver.get_screenshot_as_file('/root/app/pages/' + 'page03.png')
 
     except:

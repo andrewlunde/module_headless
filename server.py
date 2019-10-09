@@ -116,7 +116,9 @@ def headless_chrome():
         options.add_argument('window-size=1200x600')
         options.add_argument('no-sandbox')
         options.add_argument('disable-dev-shm-usage')
-        #driver = webdriver.Chrome(chrome_options=options)
+        driver = webdriver.Chrome(chrome_options=options)
+        #driver.get('https://account.us1.hana.ondemand.com/cockpit/#/globalaccount/aTeam/subaccounts')
+        #driver.get_screenshot_as_file('/tmp/page01.png')
 
     except:
         import traceback;traceback.print_exc() 

@@ -108,6 +108,11 @@ def unauth_test():
 @app.route('/headless/chrome')
 def headless_chrome():
     output = '\n Headless Chrome... \n'
+    try:
+        from selenium import webdriver
+     except:
+        import traceback;traceback.print_exc() 
+
     output += '\n'
     return Response(output, mimetype='text/plain' , status=200,)
 

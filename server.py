@@ -143,7 +143,7 @@ def headless_chrome():
         driver.get_screenshot_as_file('/root/app/pages/' + 'page02.png')
 
         login.click()
-        time.sleep(1) 
+        time.sleep(2) 
         driver.get_screenshot_as_file('/root/app/pages/' + 'page03.png')
 
         #__jsview1--addSubAccount

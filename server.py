@@ -220,7 +220,7 @@ def headless_chrome():
         #CreateNewSubAccountDialog--environmentsCombo
         environmentsComboInput = driver.find_element_by_id('CreateNewSubAccountDialog--environmentsCombo')
         #environmentsComboInput.send_keys('Cloud Foundry')
-        environmentsComboInput.tap()
+        environmentsComboInput.click()
         time.sleep(1)
         driver.get_screenshot_as_file('/root/app/pages/' + 'page05.png')
         #CreateNewSubAccountDialog--providersCombo-hiddenInput

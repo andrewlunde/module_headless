@@ -187,7 +187,7 @@ def headless_chrome():
         #__jsview1--addSubAccount
         #$("#__jsview1--addSubAccount").tap();
         addSubaccount = driver.find_element_by_id('__jsview1--addSubAccount')
-        addSubaccount.tap()
+        addSubaccount.click()
         #time.sleep(1)
         try:
             WebDriverWait(driver,10).until(cond.visibility_of_element_located((By.ID, "CreateNewSubAccountDialog--displayName-inner")))

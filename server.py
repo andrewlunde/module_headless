@@ -257,6 +257,7 @@ def headless_chrome():
         ##CreateNewSubAccountDialog--regionsCombo-hiddenInput
         #$("#CreateNewSubAccountDialog--regionsCombo-hiddenInput").tap();
         #$("#__item9-CreateNewSubAccountDialog--regionsCombo-6").tap();
+        time.sleep(1)
         regionsComboInput = driver.find_element_by_id('CreateNewSubAccountDialog--regionsCombo')
         regionsComboInput.click()
         try:

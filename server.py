@@ -293,6 +293,7 @@ def headless_chrome():
         #    print("Element not visible.")
         #    print (py_ex)
         #    print (py_ex.args)
+        driver.get_screenshot_as_file('/root/app/pages/' + 'page08.png')
         betaEnabledCF = driver.find_element_by_id('CreateNewSubAccountDialog--betaEnabledCF-CB')
         betaEnabledCF.click()
         try:
@@ -307,13 +308,13 @@ def headless_chrome():
         #$("#__button24").mouseup();
         createButton = driver.find_element_by_id('__button11')
         #time.sleep(1)
-        driver.get_screenshot_as_file('/root/app/pages/' + 'page08.png')
+        driver.get_screenshot_as_file('/root/app/pages/' + 'page09.png')
         #createButton.click()
         ##__popover8
         #doneMessage = driver.find_element_by_id('__popover8')
         #time.sleep(1)
         ##time.sleep(1)
-        driver.get_screenshot_as_file('/root/app/pages/' + 'page09.png')
+        #driver.get_screenshot_as_file('/root/app/pages/' + 'page09.png')
         driver.quit()
 
     except:

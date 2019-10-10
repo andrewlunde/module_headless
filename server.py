@@ -294,22 +294,22 @@ def headless_chrome():
         #    print (py_ex)
         #    print (py_ex.args)
         driver.get_screenshot_as_file('/root/app/pages/' + 'page08.png')
-        betaEnabledCF = driver.find_element_by_id('CreateNewSubAccountDialog--betaEnabledCF-CB')
-        betaEnabledCF.click()
-        try:
-            WebDriverWait(driver,5).until(cond.visibility_of_element_located((By.ID, "__button11")))
-        except (ElementNotVisibleException) as py_ex:
-            print("Element not visible.")
-            print (py_ex)
-            print (py_ex.args)
+        #betaEnabledCF = driver.find_element_by_id('CreateNewSubAccountDialog--betaEnabledCF-CB')
+        #betaEnabledCF.click()
+        #try:
+        #    WebDriverWait(driver,5).until(cond.visibility_of_element_located((By.ID, "__button11")))
+        #except (ElementNotVisibleException) as py_ex:
+        #    print("Element not visible.")
+        #    print (py_ex)
+        #    print (py_ex.args)
         ##__button11 #Create Button
         #$("#__button11").tap();
         #__button24
         #$("#__button24").mouseup();
         createButton = driver.find_element_by_id('__button11')
         #time.sleep(1)
+        createButton.click()
         driver.get_screenshot_as_file('/root/app/pages/' + 'page09.png')
-        #createButton.click()
         ##__popover8
         #doneMessage = driver.find_element_by_id('__popover8')
         #time.sleep(1)

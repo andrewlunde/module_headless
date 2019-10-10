@@ -288,6 +288,12 @@ def headless_chrome():
         #$("#CreateNewSubAccountDialog--subdomain-inner").next().next().next().focus();
         #displayName.sendKeys(Keys.TAB)
         subdomain.send_keys(Keys.TAB)
+        try:
+            WebDriverWait(driver,10).until(cond.visibility_of_element_located((By.ID, "CreateNewSubAccountDialog--betaEnabledCF-CB")))
+        except (ElementNotVisibleException) as py_ex:
+            print("Element not visible.")
+            print (py_ex)
+            print (py_ex.args)
         betaEnabledCF = driver.find_element_by_id('CreateNewSubAccountDialog--betaEnabledCF-CB')
         betaEnabledCF.click()
         try:

@@ -279,23 +279,29 @@ def headless_chrome():
         ##CreateNewSubAccountDialog--subdomain-inner
         subdomain = driver.find_element_by_id('CreateNewSubAccountDialog--subdomain-inner')
         #$("#CreateNewSubAccountDialog--subdomain-inner").val("abcheadless");
-        #subdomain.send_keys('abcheadless')
+        subdomain.send_keys('abcheadless')
         #driver.get_screenshot_as_file('/root/app/pages/' + 'page08.png')
         ##CreateNewSubAccountDialog--betaEnabledCF-CB
         #$("#CreateNewSubAccountDialog--betaEnabledCF-CB").tap();
         #$("#CreateNewSubAccountDialog--subdomain-inner").focus();
         #$("#CreateNewSubAccountDialog--subdomain-inner").next().next().next().focus();
         #displayName.sendKeys(Keys.TAB)
-        #subdomain.sendKeys(Keys.TAB)
-        #betaEnabledCF = driver.find_element_by_id('CreateNewSubAccountDialog--betaEnabledCF-CB')
-        #betaEnabledCF.click()
+        subdomain.sendKeys(Keys.TAB)
+        betaEnabledCF = driver.find_element_by_id('CreateNewSubAccountDialog--betaEnabledCF-CB')
+        betaEnabledCF.click()
+        try:
+            WebDriverWait(driver,10).until(cond.visibility_of_element_located((By.ID, "__button11")))
+        except (ElementNotVisibleException) as py_ex:
+            print("Element not visible.")
+            print (py_ex)
+            print (py_ex.args)
         ##__button11 #Create Button
         #$("#__button11").tap();
         #__button24
         #$("#__button24").mouseup();
-        #createButton = driver.find_element_by_id('__button11')
+        createButton = driver.find_element_by_id('__button11')
         #time.sleep(1)
-        #driver.get_screenshot_as_file('/root/app/pages/' + 'page09.png')
+        driver.get_screenshot_as_file('/root/app/pages/' + 'page09.png')
         #createButton.click()
         ##__popover8
         #doneMessage = driver.find_element_by_id('__popover8')

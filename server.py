@@ -224,6 +224,12 @@ def headless_chrome():
         environmentsComboSelect = driver.find_element_by_id('__item7-CreateNewSubAccountDialog--environmentsCombo-1')
         environmentsComboSelect.click()
         #time.sleep(1)
+        try:
+            WebDriverWait(driver,10).until(cond.visibility_of_element_located((By.ID, "CreateNewSubAccountDialog--providersCombo")))
+        except (ElementNotVisibleException) as py_ex:
+            print("Element not visible.")
+            print (py_ex)
+            print (py_ex.args)
         driver.get_screenshot_as_file('/root/app/pages/' + 'page05.png')
         #CreateNewSubAccountDialog--providersCombo-hiddenInput
         #$("#CreateNewSubAccountDialog--providersCombo-hiddenInput").tap();
@@ -231,8 +237,20 @@ def headless_chrome():
         #$("#CreateNewSubAccountDialog--providersCombo-labelText").html("Amazon Web Services (AWS)")
         providersComboInput = driver.find_element_by_id('CreateNewSubAccountDialog--providersCombo')
         providersComboInput.click()
+        try:
+            WebDriverWait(driver,10).until(cond.visibility_of_element_located((By.ID, "__item8-CreateNewSubAccountDialog--providersCombo-0")))
+        except (ElementNotVisibleException) as py_ex:
+            print("Element not visible.")
+            print (py_ex)
+            print (py_ex.args)
         providersComboSelect = driver.find_element_by_id('__item8-CreateNewSubAccountDialog--providersCombo-0')
         providersComboSelect.click()
+        try:
+            WebDriverWait(driver,10).until(cond.visibility_of_element_located((By.ID, "CreateNewSubAccountDialog--regionsCombo")))
+        except (ElementNotVisibleException) as py_ex:
+            print("Element not visible.")
+            print (py_ex)
+            print (py_ex.args)
         driver.get_screenshot_as_file('/root/app/pages/' + 'page06.png')
         ##Amazon Web Services (AWS)
         #providersComboInput.send_keys('Amazon Web Services (AWS)')
@@ -241,13 +259,25 @@ def headless_chrome():
         #$("#__item9-CreateNewSubAccountDialog--regionsCombo-6").tap();
         regionsComboInput = driver.find_element_by_id('CreateNewSubAccountDialog--regionsCombo')
         regionsComboInput.click()
+        try:
+            WebDriverWait(driver,10).until(cond.visibility_of_element_located((By.ID, "__item9-CreateNewSubAccountDialog--regionsCombo-6")))
+        except (ElementNotVisibleException) as py_ex:
+            print("Element not visible.")
+            print (py_ex)
+            print (py_ex.args)
         regionsComboSelect = driver.find_element_by_id('__item9-CreateNewSubAccountDialog--regionsCombo-6')
         regionsComboSelect.click()
+        try:
+            WebDriverWait(driver,10).until(cond.visibility_of_element_located((By.ID, "CreateNewSubAccountDialog--subdomain-inner")))
+        except (ElementNotVisibleException) as py_ex:
+            print("Element not visible.")
+            print (py_ex)
+            print (py_ex.args)
         driver.get_screenshot_as_file('/root/app/pages/' + 'page07.png')
         ##US East (VA)
         #regionsComboInput.send_keys('US East (VA)')
         ##CreateNewSubAccountDialog--subdomain-inner
-        #subdomain = driver.find_element_by_id('CreateNewSubAccountDialog--subdomain-inner')
+        subdomain = driver.find_element_by_id('CreateNewSubAccountDialog--subdomain-inner')
         #$("#CreateNewSubAccountDialog--subdomain-inner").val("abcheadless");
         #subdomain.send_keys('abcheadless')
         #driver.get_screenshot_as_file('/root/app/pages/' + 'page08.png')

@@ -223,13 +223,16 @@ def headless_chrome():
         environmentsComboInput.click()
         environmentsComboSelect = driver.find_element_by_id('__item7-CreateNewSubAccountDialog--environmentsCombo-1')
         environmentsComboSelect.click()
-        time.sleep(1)
+        #time.sleep(1)
         driver.get_screenshot_as_file('/root/app/pages/' + 'page05.png')
         #CreateNewSubAccountDialog--providersCombo-hiddenInput
         #$("#CreateNewSubAccountDialog--providersCombo-hiddenInput").tap();
         #$("#__item8-CreateNewSubAccountDialog--providersCombo-0").tap();    # Amazon Web Services(AWS)
         #$("#CreateNewSubAccountDialog--providersCombo-labelText").html("Amazon Web Services (AWS)")
-        #providersComboInput = driver.find_element_by_id('CreateNewSubAccountDialog--providersCombo-hiddenInput')
+        providersComboInput = driver.find_element_by_id('CreateNewSubAccountDialog--providersCombo')
+        providersComboInput.click()
+        providersComboSelect = driver.find_element_by_id('__item8-CreateNewSubAccountDialog--providersCombo-0')
+        providersComboSelect.click()
         ##Amazon Web Services (AWS)
         #providersComboInput.send_keys('Amazon Web Services (AWS)')
         ##CreateNewSubAccountDialog--regionsCombo-hiddenInput
@@ -256,7 +259,7 @@ def headless_chrome():
         #$("#__button24").mouseup();
         #createButton = driver.find_element_by_id('__button11')
         #time.sleep(1)
-        #driver.get_screenshot_as_file('/root/app/pages/' + 'page06.png')
+        driver.get_screenshot_as_file('/root/app/pages/' + 'page06.png')
         #createButton.click()
         ##__popover8
         #doneMessage = driver.find_element_by_id('__popover8')

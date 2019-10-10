@@ -289,7 +289,7 @@ def headless_chrome():
         #displayName.sendKeys(Keys.TAB)
         subdomain.send_keys(Keys.TAB)
         try:
-            WebDriverWait(driver,10).until(cond.visibility_of_element_located((By.ID, "CreateNewSubAccountDialog--betaEnabledCF-CB")))
+            WebDriverWait(driver,20).until(cond.visibility_of_element_located((By.ID, "CreateNewSubAccountDialog--betaEnabledCF-CB")))
         except (ElementNotVisibleException) as py_ex:
             print("Element not visible.")
             print (py_ex)

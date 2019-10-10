@@ -287,7 +287,7 @@ def headless_chrome():
         #$("#CreateNewSubAccountDialog--subdomain-inner").focus();
         #$("#CreateNewSubAccountDialog--subdomain-inner").next().next().next().focus();
         #displayName.sendKeys(Keys.TAB)
-        subdomain.sendKeys(Keys.TAB)
+        subdomain.send_keys(Keys.TAB)
         betaEnabledCF = driver.find_element_by_id('CreateNewSubAccountDialog--betaEnabledCF-CB')
         betaEnabledCF.click()
         try:

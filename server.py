@@ -215,11 +215,11 @@ def headless_chrome():
         #environmentsCombo.click()
         #CreateNewSubAccountDialog--environmentsCombo-hiddenInput
         #$("#CreateNewSubAccountDialog--environmentsCombo-labelText").html("Cloud Foundry")
-        ###environmentsComboInput = driver.find_element_by_id('CreateNewSubAccountDialog--environmentsCombo-hiddenInput')
+        environmentsComboInput = driver.find_element_by_id('CreateNewSubAccountDialog--environmentsCombo-hiddenInput')
         #environmentsComboInput.send_keys('Cloud Foundry')
-        ###environmentsComboInput.tap()
-        ###time.sleep(1)
-        ###driver.get_screenshot_as_file('/root/app/pages/' + 'page05.png')
+        environmentsComboInput.tap()
+        time.sleep(1)
+        driver.get_screenshot_as_file('/root/app/pages/' + 'page05.png')
         #CreateNewSubAccountDialog--providersCombo-hiddenInput
         #$("#CreateNewSubAccountDialog--providersCombo-hiddenInput").tap();
         #$("#__item8-CreateNewSubAccountDialog--providersCombo-0").tap();    # Amazon Web Services(AWS)

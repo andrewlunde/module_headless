@@ -233,18 +233,24 @@ def headless_chrome():
         providersComboInput.click()
         providersComboSelect = driver.find_element_by_id('__item8-CreateNewSubAccountDialog--providersCombo-0')
         providersComboSelect.click()
+        driver.get_screenshot_as_file('/root/app/pages/' + 'page06.png')
         ##Amazon Web Services (AWS)
         #providersComboInput.send_keys('Amazon Web Services (AWS)')
         ##CreateNewSubAccountDialog--regionsCombo-hiddenInput
         #$("#CreateNewSubAccountDialog--regionsCombo-hiddenInput").tap();
         #$("#__item9-CreateNewSubAccountDialog--regionsCombo-6").tap();
-        #regionsComboInput = driver.find_element_by_id('CreateNewSubAccountDialog--regionsCombo-hiddenInput')
+        regionsComboInput = driver.find_element_by_id('CreateNewSubAccountDialog--regionsCombo')
+        regionsComboInput.click()
+        regionsComboSelect = driver.find_element_by_id('__item9-CreateNewSubAccountDialog--regionsCombo-6')
+        regionsComboSelect.click()
+        driver.get_screenshot_as_file('/root/app/pages/' + 'page07.png')
         ##US East (VA)
         #regionsComboInput.send_keys('US East (VA)')
         ##CreateNewSubAccountDialog--subdomain-inner
         #subdomain = driver.find_element_by_id('CreateNewSubAccountDialog--subdomain-inner')
         #$("#CreateNewSubAccountDialog--subdomain-inner").val("abcheadless");
         #subdomain.send_keys('abcheadless')
+        #driver.get_screenshot_as_file('/root/app/pages/' + 'page08.png')
         ##CreateNewSubAccountDialog--betaEnabledCF-CB
         #$("#CreateNewSubAccountDialog--betaEnabledCF-CB").tap();
         #$("#CreateNewSubAccountDialog--subdomain-inner").focus();
@@ -259,12 +265,11 @@ def headless_chrome():
         #$("#__button24").mouseup();
         #createButton = driver.find_element_by_id('__button11')
         #time.sleep(1)
-        driver.get_screenshot_as_file('/root/app/pages/' + 'page06.png')
+        #driver.get_screenshot_as_file('/root/app/pages/' + 'page09.png')
         #createButton.click()
         ##__popover8
         #doneMessage = driver.find_element_by_id('__popover8')
         #time.sleep(1)
-        #driver.get_screenshot_as_file('/root/app/pages/' + 'page07.png')
         ##time.sleep(1)
         driver.quit()
 

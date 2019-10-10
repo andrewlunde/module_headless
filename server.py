@@ -120,6 +120,8 @@ def headless_chrome():
 
     try:
         from selenium import webdriver
+        #https://github.com/cryzed/Selenium-Requests
+        #from seleniumrequests import webdriver
         from selenium.webdriver.common.keys import Keys
         from selenium.webdriver.common.action_chains import ActionChains
         from selenium.webdriver.common.by import By
@@ -215,7 +217,8 @@ def headless_chrome():
         #environmentsCombo.click()
         #CreateNewSubAccountDialog--environmentsCombo-hiddenInput
         #$("#CreateNewSubAccountDialog--environmentsCombo-labelText").html("Cloud Foundry")
-        environmentsComboInput = driver.find_element_by_id('CreateNewSubAccountDialog--environmentsCombo-hiddenInput')
+        #CreateNewSubAccountDialog--environmentsCombo
+        environmentsComboInput = driver.find_element_by_id('CreateNewSubAccountDialog--environmentsCombo')
         #environmentsComboInput.send_keys('Cloud Foundry')
         environmentsComboInput.tap()
         time.sleep(1)

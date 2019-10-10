@@ -17,3 +17,4 @@ cfenv
 sap-xssec
 hdbcli
 selenium
+selenium-requests

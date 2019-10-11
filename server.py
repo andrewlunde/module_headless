@@ -154,7 +154,7 @@ def headless_chrome():
 
         email.send_keys('andrew@lunde.com') 
         password = driver.find_element_by_id('j_password') 
-        password.send_keys('Plak848!')
+        password.send_keys('Xxxx###!')
         login = driver.find_element_by_id('logOnFormSubmit') 
         driver.get_screenshot_as_file('/root/app/pages/' + 'page02.png')
 
@@ -199,7 +199,7 @@ def headless_chrome():
         #CreateNewSubAccountDialog--displayName-inner
         displayName = driver.find_element_by_id('CreateNewSubAccountDialog--displayName-inner')
         #$("#CreateNewSubAccountDialog--displayName-inner").val("aokheadless");
-        displayName.send_keys('aaaheadless')
+        displayName.send_keys('abcheadless')
         #CreateNewSubAccountDialog--description-inner
         description = driver.find_element_by_id('CreateNewSubAccountDialog--description-inner')
         #$("#CreateNewSubAccountDialog--description-inner").val("Test subaccount creation via headless browser.");

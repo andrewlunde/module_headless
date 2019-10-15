@@ -309,6 +309,13 @@ def headless_chrome():
         createButton = driver.find_element_by_id('__button11')
         #time.sleep(1)
         createButton.click()
+        time.sleep(1)
+        try:
+            WebDriverWait(driver,2).until(cond.visibility_of_element_located((By.ID, "CreateNewSubAccountDialog--errorStrip")))
+            output += "subDomain taken!"
+        except (ElementNotVisibleException) as py_ex:
+            output += "subDomain is OK!"
+
         driver.get_screenshot_as_file('/root/app/pages/' + 'page09.png')
         ##__popover8
         #doneMessage = driver.find_element_by_id('__popover8')

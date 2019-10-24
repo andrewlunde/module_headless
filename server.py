@@ -96,6 +96,7 @@ def dump_env():
 def python_links():
     output = '<strong>Hello World! I am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0)) + '</strong> Try these links.</br>\n'
     output += '<a href="/headless/test">/headless/test</a><br />\n'
+    output += '<a href="/headless/admin/links">/headless/admin/links</a><br />\n'
     output += '<a href="/headless/chrome">/headless/chrome</a><br />\n'
     output += '<a href="/headless/db_only">/headless/db_only</a><br />\n'
     output += '<a href="/auth_python/db_valid">/auth_python/db_valid</a><br />\n'
@@ -105,6 +106,35 @@ def python_links():
 @app.route('/headless/test')
 def unauth_test():
     return 'Python UnAuthorized Test, Yo! <br />\nI am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0))
+
+@app.route('/headless/admin/links')
+def python_links():
+    output = '<strong>Password Administration</strong> Try these links.</br>\n'
+    output += '<a href="/headless/admin/getpw">/headless/admin/getpw</a><br />\n'
+    output += '<a href="/headless/admin/setpw">/headless/admin/setpw</a><br />\n'
+    output += '<a href="/headless/admin/delpw">/headless/admin/delpw</a><br />\n'
+    return output
+
+@app.route('/headless/admin/getpw')
+def admin_getpw():
+    return 'Python UnAuthorized Test, Yo! <br />\nI am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0))
+
+@app.route('/headless/admin/setpw')
+def admin_setpw():
+    return 'Python UnAuthorized Test, Yo! <br />\nI am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0))
+
+@app.route('/headless/admin/setpwres')
+def admin_setpwres():
+    return 'Python UnAuthorized Test, Yo! <br />\nI am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0))
+
+@app.route('/headless/admin/delpw')
+def admin_delpw():
+    return 'Python UnAuthorized Test, Yo! <br />\nI am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0))
+
+@app.route('/headless/admin/delpwres')
+def admin_delpwres():
+    return 'Python UnAuthorized Test, Yo! <br />\nI am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0))
+
 
 @app.route('/headless/chrome')
 def headless_chrome():

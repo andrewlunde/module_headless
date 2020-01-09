@@ -93,7 +93,7 @@ def dump_env():
 
 # Coming through the app-router
 @app.route('/headless/links')
-def python_links():
+def headless_links():
     output = '<strong>Hello World! I am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0)) + '</strong> Try these links.</br>\n'
     output += '<a href="/headless/test">/headless/test</a><br />\n'
     output += '<a href="/headless/admin/links">/headless/admin/links</a><br />\n'
@@ -108,7 +108,7 @@ def unauth_test():
     return 'Python UnAuthorized Test, Yo! <br />\nI am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0))
 
 @app.route('/headless/admin/links')
-def python_links():
+def admin_links():
     output = '<strong>Password Administration</strong> Try these links.</br>\n'
     output += '<a href="/headless/admin/getpw">/headless/admin/getpw</a><br />\n'
     output += '<a href="/headless/admin/setpw">/headless/admin/setpw</a><br />\n'

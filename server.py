@@ -703,7 +703,7 @@ def auth_check():
     output += 'get_subdomain: ' + security_context.get_subdomain() + '\n'
 #    output += 'get_clientid: ' + security_context.get_clientid() + '\n'
     output += 'get_identity_zone: ' + security_context.get_identity_zone() + '\n'
-#    output += 'get_grant_type: ' + security_context.get_grant_type() + '\n'
+    output += 'get_grant_type: ' + security_context.get_grant_type() + '\n'
     
     return output
 

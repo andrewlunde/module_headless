@@ -216,15 +216,6 @@ def admin_links():
     output += '<a href="/headless/admin/authcheck">/headless/admin/authcheck</a><br />\n'
     return output
 
-@app.route('/headless/admin/authcheck')
-def admin_links():
-    output = '<strong>Password Administration</strong> Try these links.</br>\n'
-    output += '<a href="/headless/admin/getpw">/headless/admin/getpw</a><br />\n'
-    output += '<a href="/headless/admin/setpw">/headless/admin/setpw</a><br />\n'
-    output += '<a href="/headless/admin/delpw">/headless/admin/delpw</a><br />\n'
-    output += '<a href="/headless/admin/authcheck">/headless/admin/authcheck</a><br />\n'
-    return output
-
 @app.route('/headless/admin/getpw')
 def admin_getpw():
     output = '<strong>Password Administration Current</strong></br>\n'

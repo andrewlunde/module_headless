@@ -93,6 +93,7 @@ def dump_env():
 
 # Coming through the app-router
 @app.route('/headless/links')
+@app.route('/headless/links/')
 def headless_links():
     output = '<strong>Hello World! I am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0)) + '</strong> Try these links.</br>\n'
     output += '<a href="/headless/test">/headless/test</a><br />\n'

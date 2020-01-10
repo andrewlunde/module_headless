@@ -37,7 +37,11 @@ env = AppEnv()
 # mkdir -p local
 # pip install -t local -r requirements.txt -f /tmp
 port = int(os.getenv("PORT", 9099))
-hana = env.get_service(label='hana')
+hanass = env.get_service(name='HEADLESS_SS')
+ss_conn = ""
+chrusr = ""
+chrpwd = ""
+loggedin = False
 
 def attach(port, host):
     try:
@@ -59,7 +63,95 @@ def attach(port, host):
     except:
         import traceback;traceback.print_exc() 
         
-        
+def get_conn(hana):
+ 
+    schema = hana.credentials['schema']
+    host = hana.credentials['host']
+    port = hana.credentials['port']
+    user = hana.credentials['user']
+    password = hana.credentials['password']
+
+    # The certificate will available for HANA service instances that require an encrypted connection
+    # Note: This was tested to work with python hdbcli-2.3.112 tar.gz package not hdbcli-2.3.14 provided in XS_PYTHON00_0-70003433.ZIP
+    if 'certificate' in hana.credentials:
+        haascert = hana.credentials['certificate']
+
+    #output += 'schema: ' + schema + '<br >\n'
+    #output += 'host: ' + host + '<br >\n'
+    #output += 'port: ' + port + '<br >\n'
+    #output += 'user: ' + user + '<br >\n'
+    #output += 'pass: ' + password + '<br >\n'
+
+#    # Connect to the python HANA DB driver using the connection info
+# User for HANA as a Service instances
+    if 'certificate' in hana.credentials:
+        connection = dbapi.connect(
+            address=host,
+            port=int(port),
+            user=user,
+            password=password,
+            currentSchema=schema,
+            encrypt="true",
+            sslValidateCertificate="true",
+            sslCryptoProvider="openssl",
+            sslTrustStore=haascert
+        )
+    else:
+        connection = dbapi.connect(
+            address=host,
+            port=int(port),
+            user=user,
+            password=password,
+            currentSchema=schema
+        )
+
+    return connection
+       
+def get_unpw():
+
+    global chrusr
+    global chrpwd
+
+    output = ""
+
+    ss_conn = get_conn(hanass)
+
+    # Prep a cursor for SQL execution
+    cursor = ss_conn.cursor()
+
+    # Form an SQL statement to retrieve some data
+
+#https://blogs.sap.com/2017/07/26/sap-hana-2.0-sps02-new-feature-updated-python-driver/
+
+    import codecs
+
+    hexvalue = cursor.callproc("SYS.USER_SECURESTORE_RETRIEVE", ("ChromeStore", False, "CHRUserName", None))
+
+    if hexvalue[3] is None:
+        output += 'key CHRUserName does not exist in store ChromeStore.  Try inserting a value first.' + '<br >\n'
+    else:
+        retrieved = codecs.decode(hexvalue[3].hex(), "hex").decode()
+        chrusr = retrieved
+        output += 'key CHRUserName with value ' + retrieved + ' was retrieved from store ChromeStore.' + '<br >\n'
+
+
+    hexvalue = cursor.callproc("SYS.USER_SECURESTORE_RETRIEVE", ("ChromeStore", False, "CHRPassWord", None))
+
+    if hexvalue[3] is None:
+        output += 'key CHRPassWord does not exist in store ChromeStore.  Try inserting a value first.' + '<br >\n'
+    else:
+        retrieved = codecs.decode(hexvalue[3].hex(), "hex").decode()
+        chrpwd = retrieved
+        retrieved = "*****"
+        output += 'key CHRPassWord with value ' + retrieved + ' was retrieved from store ChromeStore.' + '<br >\n'
+
+#    # Close the DB connection
+    ss_conn.close()
+
+    return output
+
+
+
 # This module's Flask webserver will respond to these three routes (URL paths)
 # If there is no path then just return Hello World and this module's instance number
 # Requests passed through the app-router will never hit this route.
@@ -108,6 +200,13 @@ def headless_links():
 def unauth_test():
     return 'Python UnAuthorized Test, Yo! <br />\nI am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0))
 
+@app.route('/headless/admin')
+def admin_python_home():
+    output = '<strong>Password Administration</strong> Try these links.</br>\n'
+    output += '<a href="/headless/admin/links">/headless/admin/links</a><br />\n'
+    output += '<a href="/headless/test">/headless/test</a><br />\n'
+    return output
+
 @app.route('/headless/admin/links')
 def admin_links():
     output = '<strong>Password Administration</strong> Try these links.</br>\n'
@@ -118,24 +217,107 @@ def admin_links():
 
 @app.route('/headless/admin/getpw')
 def admin_getpw():
-    return 'Python UnAuthorized Test, Yo! <br />\nI am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0))
+    output = '<strong>Password Administration Current</strong></br>\n'
+
+    global chrusr
+    global chrpwd
+
+    output += get_unpw()
+
+    output += '<a href="/headless/admin">Back to Admin</a><br />\n'
+    return output
 
 @app.route('/headless/admin/setpw')
 def admin_setpw():
-    return 'Python UnAuthorized Test, Yo! <br />\nI am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0))
+    output = '<strong>Password Administration</strong></br>\n'
+    output += '<form action="/headless/admin/setpw_result" method="post">\n'
+    output += '<table cellspacing="0" cellpadding="0">\n'
+    output += '  <tr><td align="right">User Name:</td><td align="left"><input type="text" name="username" size="30" maxlength="25"></td></tr>\n'
+    output += '  <tr><td align="right">Password:</td><td align="left"><input type="password" name="password" size="30" maxlength="25"></td></tr>\n'
+    output += '  <tr><td align="right"></td><td align="left"><button type="submit">Submit</button></td></tr>\n'
+    output += '</table>\n'
+    output += '</form>\n'
+    return output
 
-@app.route('/headless/admin/setpwres')
-def admin_setpwres():
-    return 'Python UnAuthorized Test, Yo! <br />\nI am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0))
+@app.route('/headless/admin/setpw_result', methods=['POST'])
+def admin_setpw_result():
+    output = '<strong>Password Administration Result</strong></br>\n'
+
+    global chrusr
+    global chrpwd
+
+    usr = 'unknown'
+    pwd  = 'unknown'
+    if request.method == 'POST':
+        usr = request.form['username']
+        pwd  = request.form['password']
+
+    output += 'User: ' + usr + '<br />\n'
+    output += 'Pass: ' + "*****" + '<br />\n'
+
+    ss_conn = get_conn(hanass)
+
+#    # Prep a cursor for SQL execution
+    cursor = ss_conn.cursor()
+
+#    # Form an SQL statement to retrieve some data
+
+    string2store = 'Whatever!'
+
+    import codecs
+
+    string2store = usr
+    hex2store = (codecs.encode(str.encode(string2store), "hex")).decode()
+
+    try:
+        cursor.callproc("SYS.USER_SECURESTORE_INSERT", ("ChromeStore", False, "CHRUserName", hex2store))
+        output += 'key CHRUserName with value ' + usr + '=' + hex2store + ' was inserted into store ChromeStore.' + '<br >\n'
+        chrusr = usr
+    except:
+        output += 'key CHRUserName likely already exists. Try deleting first.' + '<br >\n'
+
+    string2store = pwd
+    hex2store = (codecs.encode(str.encode(string2store), "hex")).decode()
+
+    try:
+        cursor.callproc("SYS.USER_SECURESTORE_INSERT", ("ChromeStore", False, "CHRPassWord", hex2store))
+        output += 'key CLIUserPass with value ' + "*****" + '=' + hex2store + ' was inserted into store ChromeStore.' + '<br >\n'
+        chrpwd = pwd
+    except:
+        output += 'key CLIUserPass likely already exists. Try deleting first.' + '<br >\n'
+
+#    # Close the DB connection
+    ss_conn.close()
+
+    output += '<a href="/headless/admin">Back to Admin</a><br />\n'
+    return output
 
 @app.route('/headless/admin/delpw')
 def admin_delpw():
-    return 'Python UnAuthorized Test, Yo! <br />\nI am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0))
+    output = '<strong>Password Deletion</strong></br>\n'
 
-@app.route('/headless/admin/delpwres')
-def admin_delpwres():
-    return 'Python UnAuthorized Test, Yo! <br />\nI am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0))
+    global chrusr
+    global chrpwd
 
+    ss_conn = get_conn(hanass)
+
+#    # Prep a cursor for SQL execution
+    cursor = ss_conn.cursor()
+
+#    # Form an SQL statement
+    cursor.callproc("SYS.USER_SECURESTORE_DELETE", ("ChromeStore", False, "CHRUserName"))
+    cursor.callproc("SYS.USER_SECURESTORE_DELETE", ("ChromeStore", False, "CHRPassWord"))
+
+    chrusr = ""
+    chrpwd = ""
+
+#    # Close the DB connection
+    ss_conn.close()
+
+    output += 'key CHRUserName and CHRPassWord were deleted from store ChromeStore.' + '<br />\n'
+
+    output += '<a href="/headless/admin">Back to Admin</a><br />\n'
+    return output
 
 @app.route('/headless/chrome')
 def headless_chrome():
